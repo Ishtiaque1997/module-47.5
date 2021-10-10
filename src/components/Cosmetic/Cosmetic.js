@@ -1,12 +1,16 @@
 import React from 'react';
-import { addToDatabase } from '../../Utilities/fakedb';
-import { add } from '../../Utilities/storage';
+import { addToDb, deleteFromDb } from '../../Utilities/fakedb';
+// import { addToDatabase, removeFromDatabase } from '../../Utilities/fakedb';
+// import { addToDatabase,removeFromDatabase } from '../../Utilities/storage';
 
 const Cosmetic = (props) => {
  const{name,price,id}=props.cosmetic;
  const handlePurchase=(id)=>{
  console.log(id)
- addToDatabase(id);
+ addToDb(id)
+ }
+ const handleRemove=id=>{
+deleteFromDb(id)
  }
  
  return (
@@ -15,6 +19,7 @@ const Cosmetic = (props) => {
    <h2>{name}</h2>
    <p>${price}</p>
    <button onClick={()=>handlePurchase(id)}>Purchase</button>
+   <button onClick={()=>handleRemove(id)}>Remove</button>
   </div>
  );
 };
